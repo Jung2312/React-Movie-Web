@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script>
+    const root = document.querySelector("#root");
+    const span = React.createElement(
+      "span",
+      {
+        id: "span",
+        onMouseOut: () => console.log("Mouse out"),
+      },
+      "Total clicks : 0"
+    );
+
+    const button = React.createElement(
+      "button",
+      {
+        onClick: function () {
+          console.log("Click");
+        },
+        style: {
+          backgroundColor: "red",
+          color: "white",
+          padding: "10px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        },
+      },
+      "Click me"
+    );
+
+    const container = React.createElement("div", null, [span, button]);
+    ReactDOM.render(container, root);
+  </script>
+</html>
