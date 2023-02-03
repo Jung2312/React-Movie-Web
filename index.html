@@ -5,9 +5,10 @@
   </body>
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script>
-    const root = document.querySelector("#root");
-    const span = React.createElement(
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- 아래 방식 사용 -->
+  <!-- const span = React.createElement(
       "span",
       {
         id: "span",
@@ -32,9 +33,52 @@
         },
       },
       "Click me"
+    ); -->
+
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+
+    // 아래 방식 사용
+    const Title = () => (
+      <span
+        id="span"
+        onMouseOut={() => console.log("Mouse out")}
+        style={{
+          color: "red",
+          padding: "10px",
+        }}
+      >
+        Total clicks : 0
+      </span>
     );
 
-    const container = React.createElement("div", null, [span, button]);
-    ReactDOM.render(container, root);
+    const Button = () => (
+      <button
+        onClick={() => console.log("Click")}
+        style={{
+          backgroundColor: "red",
+          color: "white",
+          padding: "10px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Click me
+      </button>
+    );
+
+    //const container = React.createElement("div", null, [title, button]);
+    // 컴포넌트는 대문자로 시작(예약어와 동일할 수 있음)
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+
+    // () => : 반환값이 포함된 함수와 동일한 기능
+
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
