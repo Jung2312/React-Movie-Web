@@ -38,42 +38,25 @@
   <script type="text/babel">
     const root = document.querySelector("#root");
 
+    let count = 0;
+
+    function countUp() {
+      count++;
+      reRender();
+    }
+
+    function reRender() {
+      ReactDOM.render(<Container />, root); // 리렌더링
+    }
     // 아래 방식 사용
-    const Title = () => (
-      <span
-        id="span"
-        onMouseOut={() => console.log("Mouse out")}
-        style={{
-          color: "red",
-          padding: "10px",
-        }}
-      >
-        Total clicks : 0
-      </span>
-    );
 
-    const Button = () => (
-      <button
-        onClick={() => console.log("Click")}
-        style={{
-          backgroundColor: "red",
-          color: "white",
-          padding: "10px",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Click me
-      </button>
-    );
-
-    //const container = React.createElement("div", null, [title, button]);
+    // const container = React.createElement("div", null, [title, button]);
     // 컴포넌트는 대문자로 시작(예약어와 동일할 수 있음)
     const Container = () => (
+      // 함수와 동일
       <div>
-        <Title />
-        <Button />
+        <h3>Total Clicks : {count}</h3>
+        <button onClick={countUp}>Click me</button>
       </div>
     );
 
