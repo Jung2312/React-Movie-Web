@@ -52,16 +52,22 @@
 
     // const container = React.createElement("div", null, [title, button]);
     // 컴포넌트는 대문자로 시작(예약어와 동일할 수 있음)
-    const Container = () => (
-      // 함수와 동일
-      <div>
-        <h3>Total Clicks : {count}</h3>
-        <button onClick={countUp}>Click me</button>
-      </div>
-    );
+    function App() {
+      let [count, setCount] = React.useState(0);
+      const onClick = () => {
+        //setCount(count + 1);
+        setCount((prevCount) => prevCount + 1);
+      };
+      return (
+        <div>
+          <h2>Total clicks: {count}</h2>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    }
 
     // () => : 반환값이 포함된 함수와 동일한 기능
 
-    ReactDOM.render(<Container />, root);
+    ReactDOM.render(<App />, root);
   </script>
 </html>
