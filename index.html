@@ -67,24 +67,45 @@
     }
 
     function App2() {
-      const [Minute, setMinute] = React.useState();
+      const [amount, setAmount] = React.useState();
+      const [flipped, setflipped] = React.useState(false);
       const onChacnge = (e) => {
-        setMinute(e.target.value);
+        setAmount(e.target.value);
+      };
+      const reset = () => {
+        setAmount(0);
+      };
+      const onFlip = () => {
+        reset();
+        setflipped((curremt) => !curremt);
       };
       return (
         <div>
           <h1 className="hi">Super Convertor</h1>
-          <label htmlfor="Minute">Minute</label>
-          <input
-            id="Minute"
-            placeholder="Minute"
-            type="number"
-            value={Minute}
-            onChange={onChacnge}
-          />
-          <h4>you want to convert {Minute}</h4>
-          <label htmlfor="hour">hour</label>
-          <input id="hour" placeholder="hour" type="number" />
+          <div>
+            <label htmlfor="Minute">Minute</label>
+            <input
+              id="Minute"
+              placeholder="Minute"
+              type="number"
+              value={flipped ? amount * 60 : amount}
+              onChange={onChacnge}
+              disabled={flipped}
+            />
+          </div>
+          <div>
+            <label htmlfor="hour">hour</label>
+            <input
+              id="hour"
+              placeholder="hour"
+              type="number"
+              value={flipped ? amount : Math.round(amount / 60)}
+              disabled={!flipped}
+              onChange={onChacnge}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
         </div>
       );
     }
